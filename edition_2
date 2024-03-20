@@ -1,0 +1,76 @@
+// Define the pins connected to the motor driver module
+int enA = 9;  // Enable Pin for Motor A
+int enB = 10; // Enable Pin for Motor B
+int in1 = 8;  // Control Pin 1 for Motor A
+int in2 = 7;  // Control Pin 2 for Motor A
+int in3 = 6;  // Control Pin 1 for Motor B
+int in4 = 5;  // Control Pin 2 for Motor B
+int irSensor1 = A0;  // Signal Pin for IR Sensor Module 1
+int irSensor2 = A1;  // Signal Pin for IR Sensor Module 2
+int irSensor3 = A2;  // Signal Pin for IR Sensor Module 3
+void setup() {
+  // Set the control pins as outputs
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+  // Set the IR sensor pins as inputs
+  pinMode(irSensor1, INPUT);
+  pinMode(irSensor2, INPUT);
+  pinMode(irSensor3, INPUT);
+}
+
+void loop() {
+  // Read the IR sensor inputs
+  int sensorValue1 = digitalRead(irSensor1);
+  int sensorValue2 = digitalRead(irSensor2);
+  int sensorValue3 = digitalRead(irSensor3);
+  
+  // If an obstacle is detected by IR sensor 1, move motor A forward
+  if (sensorValue1 == HIGH && sensorValue2 == HIGH && sensorValue3 == LOW) {
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH); // DEEEH MESH LOWWWW OKAAYYYYY
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    analogWrite(enA, 100);  // Adjust the value (0 to 255) to control the speed for Motor A
+    analogWrite(enB,255);
+  }
+  // If an obstacle is detected by IR sensor 2, move motor B forward
+  if (sensorValue1 == LOW && sensorValue2 == HIGH && sensorValue3 == HIGH) {
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(enB, 100);  // Adjust the value (0 to 255) to control the speed for Motor B
+    analogWrite(enA, 255);
+  }
+  // If an obstacle is detected by IR sensor 3, you can perform a specific action here
+  if (sensorValue1 == LOW && sensorValue2 == HIGH && sensorValue3 == LOW) {
+        digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(enB, 255);  // Adjust the value (0 to 255) to control the speed for Motor B
+    analogWrite(enA, 255);
+  }
+  if (sensorValue1 == HIGH && sensorValue2 == HIGH && sensorValue3 == HIGH) {
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(enB, 0);  // Adjust the value (0 to 255) to control the speed for Motor B
+    analogWrite(enA, 0);
+  }
+    if (sensorValue1 == LOW && sensorValue2 == LOW && sensorValue3 == LOW) {
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    analogWrite(enB, 0);  // Adjust the value (0 to 255) to control the speed for Motor B
+    analogWrite(enA, 0);
+  }
+  // Add a delay to control the loop execution speed
+  delay(200);  // Adjust the delay time as neede
+}
