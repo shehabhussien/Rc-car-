@@ -1,21 +1,21 @@
 // Sensors
-#define left 6
-#define center 7
-#define right 8
+#define left 6                       //white wire
+#define center 7                     //white wire 
+#define right 8                      //white wire 
 
 //motor one
-#define ENA 9
-#define IN1 2
-#define IN2 3
+#define ENA 9                        //Blue wire
+#define IN1 2                        //Blue wire
+#define IN2 3                        //Blue wire
 
 //motor two
-#define ENB 10
-#define IN3 4
-#define IN4 5
+#define ENB 10                       //Blue wire
+#define IN3 4                        //Blue wire
+#define IN4 5                        //Blue wire
 
 //Ultra sonic
-const int trigPin = 12;
-const int echoPin = 11;
+const int trigPin = 12;               //Blue wire
+const int echoPin = 11;               //Blue wire
 
 int Speed = 120;
 
